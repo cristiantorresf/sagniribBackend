@@ -1,12 +1,11 @@
 import { Inject, Service } from 'typedi'
 import PartnerModel, { Partner } from '../db/models/partner'
-import { ValidationService } from '../services/ValidationService'
 
 
 @Service()
 export class PartnerRepository {
 
-  constructor(@Inject('PartnerModel') private partnerModel: typeof PartnerModel, private validationService: ValidationService) {
+  constructor(@Inject('PartnerModel') private partnerModel: typeof PartnerModel) {
   }
 
   async save(partner: Partner): Promise<Partner> {

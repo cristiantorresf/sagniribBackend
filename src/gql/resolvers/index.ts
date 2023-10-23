@@ -53,7 +53,13 @@ export const resolvers: Resolvers = {
       if (!input) throw new Error('Invalid request')
       const hashedPassword = await hashService.hashPassword(input.password)
       // send email after registration
-      await sendEmailGateway.sendEmail(input.email)
+      const emailStatus = await sendEmailGateway.sendEmail({
+        from: process.env.EMAIL_USER || 'corp@mail.com',
+        to: input.email,
+        subject: 'REGISTRATION COMPLETE',
+        text: process.env.EMAIL_REGISTRATION_MSG || 'Registration Complete'
+      })
+      console.log('Email status >>', emailStatus)
       return partnerRepository.save({ ...input, password: hashedPassword } as Partner)
     },
     createAd: authenticated(async (_, { input }, context) => {

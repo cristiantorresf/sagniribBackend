@@ -51,3 +51,5 @@ Fix lint issues automatically
 ```bash
 npm run lint:fix
 ```
+
+![Alt text](image.png)
