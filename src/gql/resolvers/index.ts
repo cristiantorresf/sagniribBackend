@@ -4,12 +4,17 @@ import { Resolvers } from '../types/typedSchema'
 import { HashService } from '../../services/HashService'
 import { TokenService } from '../../services/TokenService'
 import PartnerModel, { Partner } from '../../db/models/partner'
+import AdvertisingModel from '../../db/models/advertising'
 import { authenticated } from '../../middleware/authenticated'
 import { EmailGateway } from '../../gateways/SendEmailGateway'
 import { ValidationService } from '../../services/ValidationService'
+import { AdvertisingRepository } from '../../repositories/AdvertisingRepository'
+import { Advertising } from '../../db/models/advertising'
 
 Container.set('PartnerModel', PartnerModel)
+Container.set('AdvertisingModel', AdvertisingModel)
 const partnerRepository = Container.get(PartnerRepository)
+const advertisingRepository = Container.get(AdvertisingRepository)
 const hashService = Container.get<HashService>(HashService)
 const tokenService = Container.get<TokenService>(TokenService)
 const sendEmailGateway = Container.get<EmailGateway>(EmailGateway)
@@ -63,10 +68,12 @@ export const resolvers: Resolvers = {
       return partnerRepository.save({ ...input, password: hashedPassword } as Partner)
     },
     createAd: authenticated(async (_, { input }, context) => {
-      // Assuming you will save the Ad to a database and have a service or model for it
-      // const ad = await AdService.create(input) // Replace with actual logic
-      // return ad
-      return { name: 'protected resource granted: Anuncio creado' }
+      if (!input) throw new Error('Invalid request')
+      const isValidPhoneNumber = validationService.isValidPhoneNumber(input?.phoneNumber as string)
+      if (!isValidPhoneNumber) {
+        throw new Error('Phone number is invalid')
+      }
+      return advertisingRepository.save({ ...input } as Advertising);
     })
   }
 }
