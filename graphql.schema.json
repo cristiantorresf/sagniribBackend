@@ -38,7 +38,23 @@
             "deprecationReason": null
           },
           {
-            "name": "name",
+            "name": "imageList",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "location",
             "description": null,
             "args": [],
             "type": {
@@ -50,7 +66,7 @@
             "deprecationReason": null
           },
           {
-            "name": "phone",
+            "name": "phoneNumber",
             "description": null,
             "args": [],
             "type": {
@@ -62,7 +78,19 @@
             "deprecationReason": null
           },
           {
-            "name": "picture",
+            "name": "promoteImage",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
             "description": null,
             "args": [],
             "type": {
@@ -98,10 +126,10 @@
             "deprecationReason": null
           },
           {
-            "name": "name",
+            "name": "imageList",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
@@ -114,7 +142,7 @@
             "deprecationReason": null
           },
           {
-            "name": "phone",
+            "name": "location",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -126,7 +154,43 @@
             "deprecationReason": null
           },
           {
-            "name": "picture",
+            "name": "partner",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "phoneNumber",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "promoteImage",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
             "description": null,
             "type": {
               "kind": "SCALAR",
